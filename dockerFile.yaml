@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+ db:
+   image: postgres:latest
+   container_name: db_fastapi
+   environment:
+     - POSTGRES_DB=bbdd
+     - POSTGRES_PASSWORD=psswd
+     - POSTGRES_USER=usuario
+   ports:
+     - "5432:5432"
+   volumes:
+     - local_pgdata:/var/lib/postgresql/data
+ pgadmin:
+   image: dpage/pgadmin4
+   container_name: pg_fastapi
+   ports:
+     - "80:80"
+   environment:
+     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+     PGADMIN_DEFAULT_PASSWORD: admin
+   volumes:
+     - pgadmin-data:/var/lib/pgadmin
+volumes:
+ local_pgdata:
+ pgadmin-data:
